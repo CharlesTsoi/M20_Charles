@@ -1,0 +1,49 @@
+/**:
+    ros__parameters:
+        feature_extract_enable: false
+        point_filter_num: 3
+        max_iteration: 3
+        filter_size_surf: 0.3
+        filter_size_map: 0.3
+        cube_side_length: 1000.0
+        runtime_pos_log_enable: true
+        map_file_path: "./m20_front_lidar_imu.pcd"
+
+        common:
+            lid_topic: "/rslidar_points_front"
+            imu_topic: "/LIDAR/IMU201"
+            time_sync_en: false
+            time_offset_lidar_to_imu: 0.0
+
+        preprocess:
+            lidar_type: 5
+            scan_line: 96
+            scan_rate: 10
+            timestamp_unit: 0
+            blind: 0.5
+
+        mapping:
+            acc_cov: 0.1
+            gyr_cov: 0.1
+            b_acc_cov: 0.0001
+            b_gyr_cov: 0.0001
+            fov_degree: 180.0
+            det_range: 40.0
+            extrinsic_est_en: false
+            # Cloud is already in the vehicle frame. This lidar IMU reads
+            # gravity on -Y. R maps a vehicle-frame point into that IMU frame:
+            # p_imu = R * (p_vehicle - t), t is the CAD lidar origin.
+            extrinsic_T: [0.0, -0.013, 0.32028]
+            extrinsic_R: [0.0, 1.0, 0.0,
+                          0.0, 0.0, -1.0,
+                          -1.0, 0.0, 0.0]
+
+        publish:
+            path_en: true
+            scan_publish_en: false
+            dense_publish_en: false
+            scan_bodyframe_pub_en: false
+
+        pcd_save:
+            pcd_save_en: true
+            interval: -1
